@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="68a06283-2317-4052-a5c5-c23e3580153e" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase 1" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="68a06283-2317-4052-a5c5-c23e3580153efileName">TestCase-1</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="groovy" name="Groovy Script" id="3aa40c55-cfaa-42e5-8cce-18ea232a847b"><con:settings/><con:config><script>import scripts.*
+
+def User=new user("Jyoti","Architect");
+	log.info User
+def name=User.getName()
+log.info name
+def job=User.getJob()
+log.info job
+
+	testRunner.testCase.testSuite.setPropertyValue("name", name)
+	testRunner.testCase.testSuite.setPropertyValue("job", job)
+
+def email= User.generateData()
+log.info email</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Request" id="1de9bd25-5f47-4b47-82af-798090cc403e"><con:settings/><con:config service="" resourcePath="/api/users" methodName="AddingJars" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Request" id="c0a09acd-7bcb-4a70-9307-f1465fdcf698" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://reqres.in</con:endpoint><con:request>{
+	"name":"${#TestSuite#name}",
+	"job":"${#TestSuite#job}"
+}
+</con:request><con:originalUri>https://reqres.in/api/register</con:originalUri><con:assertion type="Simple Contains" id="12e7d9b6-4a0d-4718-bebd-c0224d88deba" name="Contains"><con:configuration><token>Jyoti</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>1de9bd25-5f47-4b47-82af-798090cc403e</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
